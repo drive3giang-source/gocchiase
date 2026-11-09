@@ -1,13 +1,11 @@
 <!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Trang của tôi</title><link rel="stylesheet" href="/style.css"></head><body>
-<header><a href="/" class="logo">📰 Trang của tôi</a></header>
-<main id="list"><p>Đang tải...</p></main>
-<footer>© Trang của tôi</footer>
-<script>
-fetch('/posts.json').then(r=>r.json()).then(ps=>{
- document.getElementById('list').innerHTML=ps.length?ps.map(p=>`
- <a class="card" href="/post.html?p=${p.slug}">
-  ${p.image?`<img src="${p.image}" alt="">`:''}
-  <div><h2>${p.title}</h2><small>${(p.date||'').slice(0,10)}</small><p>${p.summary}</p></div></a>`).join(''):'<p>Chưa có bài viết.</p>';
-});
-</script></body></html>
+<title>Góc Chia Sẻ</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="nav"><div class="wrap"><a href="index.html" class="logo">✦ Góc Chia Sẻ</a>
+<nav><a href="index.html">Trang chủ</a><a href="index.html#posts">Bài viết</a><a href="admin/">Quản trị</a></nav></div></header>
+<section class="hero"><div class="wrap"><h1>Chia sẻ kiến thức,<br><span>lan tỏa cảm hứng</span></h1>
+<p>Những bài viết hay về công nghệ, đời sống và du lịch – cập nhật mỗi tuần.</p>
+<input id="q" placeholder="🔍  Tìm bài viết..."></div></section>
+<main class="wrap" id="posts"><div id="cats" class="cats"></div><div id="featured"></div><div id="grid" class="grid"></div></main>
+<footer><div class="wrap"><b>✦ Góc Chia Sẻ</b><p>Kiến thức · Cuộc sống · Du lịch</p><small>© 2026 Góc Chia Sẻ</small></div></footer>
+<script src="posts.js"></script><script src="app.js"></script><script>if(window.renderHome)renderHome();else document.getElementById('grid').innerHTML='<p>Không tải được dữ liệu. Hãy mở file index.html trong thư mục đã giải nén.</p>';</script></body></html>

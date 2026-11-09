@@ -1,16 +1,8 @@
 <!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Bài viết</title><link rel="stylesheet" href="/style.css">
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script></head><body>
-<header><a href="/" class="logo">📰 Trang của tôi</a></header>
-<main><article id="post">Đang tải...</article></main>
-<footer><a href="/">← Về trang chủ</a></footer>
-<script>
-const slug=new URLSearchParams(location.search).get('p');
-fetch('/posts.json').then(r=>r.json()).then(ps=>{
- const p=ps.find(x=>x.slug===slug);const el=document.getElementById('post');
- if(!p){el.innerHTML='<p>Không tìm thấy bài.</p>';return;}
- document.title=p.title;
- el.innerHTML=`<h1>${p.title}</h1><small>${(p.date||'').slice(0,10)}</small>
- ${p.image?`<img src="${p.image}" alt="">`:''}${marked.parse(p.body)}`;
-});
-</script></body></html>
+<title>Bài viết</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"></head><body>
+<header class="nav"><div class="wrap"><a href="index.html" class="logo">✦ Góc Chia Sẻ</a>
+<nav><a href="index.html">Trang chủ</a><a href="index.html#posts">Bài viết</a><a href="admin/">Quản trị</a></nav></div></header>
+<main class="wrap narrow"><article id="post"></article><h3 class="more-t">Bài viết khác</h3><div id="more" class="grid"></div></main>
+<footer><div class="wrap"><b>✦ Góc Chia Sẻ</b><p>Kiến thức · Cuộc sống · Du lịch</p><small>© 2026 Góc Chia Sẻ</small></div></footer>
+<script src="posts.js"></script><script src="app.js"></script><script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><script>if(window.renderPost)renderPost();else document.getElementById('post').innerHTML='<p>Không tải được dữ liệu. Hãy mở file index.html trong thư mục đã giải nén.</p>';</script></body></html>
