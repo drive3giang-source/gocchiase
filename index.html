@@ -1,0 +1,13 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Trang của tôi</title><link rel="stylesheet" href="/style.css"></head><body>
+<header><a href="/" class="logo">📰 Trang của tôi</a></header>
+<main id="list"><p>Đang tải...</p></main>
+<footer>© Trang của tôi</footer>
+<script>
+fetch('/posts.json').then(r=>r.json()).then(ps=>{
+ document.getElementById('list').innerHTML=ps.length?ps.map(p=>`
+ <a class="card" href="/post.html?p=${p.slug}">
+  ${p.image?`<img src="${p.image}" alt="">`:''}
+  <div><h2>${p.title}</h2><small>${(p.date||'').slice(0,10)}</small><p>${p.summary}</p></div></a>`).join(''):'<p>Chưa có bài viết.</p>';
+});
+</script></body></html>

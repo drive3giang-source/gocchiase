@@ -1,0 +1,16 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bài viết</title><link rel="stylesheet" href="/style.css">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script></head><body>
+<header><a href="/" class="logo">📰 Trang của tôi</a></header>
+<main><article id="post">Đang tải...</article></main>
+<footer><a href="/">← Về trang chủ</a></footer>
+<script>
+const slug=new URLSearchParams(location.search).get('p');
+fetch('/posts.json').then(r=>r.json()).then(ps=>{
+ const p=ps.find(x=>x.slug===slug);const el=document.getElementById('post');
+ if(!p){el.innerHTML='<p>Không tìm thấy bài.</p>';return;}
+ document.title=p.title;
+ el.innerHTML=`<h1>${p.title}</h1><small>${(p.date||'').slice(0,10)}</small>
+ ${p.image?`<img src="${p.image}" alt="">`:''}${marked.parse(p.body)}`;
+});
+</script></body></html>
